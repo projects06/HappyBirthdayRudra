@@ -687,32 +687,29 @@
     ------------------------- */
 
     // Low frequencies (speech)
-    let low = 0;
-    for (let i = 0; i < 40; i++) low += dataArray[i];
-    low /= 40;
+  let low = 0;
+for (let i = 0; i < 25; i++) low += dataArray[i];
+low /= 25;
 
     // High frequencies (airflow hiss)
     let high = 0;
-    for (let i = 80; i < 200; i++) high += dataArray[i];
-    high /= 120;
+for (let i = 30; i < 90; i++) high += dataArray[i];
+high = (high / 60) * 1.7; // boost blowing signal
 
     // Detect airflow noise (blowing)
-    const noiseIndex = high - low;
+    const noiseIndex = high - (low * 0.5);
 
     // Thresholds for blowing
-    const blowThreshold = 25;       // airflow detection sensitivity
-    const framesNeeded = 30;        // duration needed (0.5 sec)
+    const blowThreshold = 12;
+const framesNeeded = 18;  // duration needed (0.5 sec)
 
-    if (noiseIndex > blowThreshold) {
-        blowFrames++;
-    } else {
-        blowFrames = 0;
-    }
+    if (noiseIndex > blowThreshold) blowFrames++;
+else blowFrames = 0;
 
-    if (blowFrames > framesNeeded) {
-        blowOutCandles();
-        return;
-    }
+   if (blowFrames > framesNeeded) {
+    blowOutCandles();
+    return;
+}
 
     requestAnimationFrame(detectBlow);
 }
