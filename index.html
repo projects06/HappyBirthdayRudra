@@ -675,7 +675,7 @@
 
             const THRESHOLD = 65;
             if (lowFreqAverage > THRESHOLD) { blowFrames++; } else { blowFrames = 0; }
-            if (blowFrames > 18) { blowOutCandles(); }
+            if (blowFrames > 60) { blowOutCandles(); }
             requestAnimationFrame(detectBlow);
         }
 
