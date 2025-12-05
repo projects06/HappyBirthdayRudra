@@ -647,37 +647,75 @@
         });
 
         function detectBlow() {
-            if (!isListening || candlesExtinguished) return;
-            const bufferLength = analyser.frequencyBinCount;
-            const dataArray = new Uint8Array(bufferLength);
-            analyser.getByteFrequencyData(dataArray);
-            let sum = 0;
-            const lowFreqCount = 20;
-            for (let i = 0; i < lowFreqCount; i++) {
-                sum += dataArray[i] * 1.2;  // slight boost, not heavy boost
-            }
-            let lowFreqAverage = sum / lowFreqCount;
-            let percentage = Math.min((lowFreqAverage / 100) * 100, 100);
-            blowingStrengthBar.style.width = `${percentage}%`;
+    if (!isListening || candlesExtinguished) return;
 
-            if (percentage > 5) {
-                micVisualizer.classList.add('active');
-                let scale = 1 + (percentage / 100);
-                micVisualizer.style.transform = `scale(${scale})`;
-            } else {
-                micVisualizer.classList.remove('active');
-                micVisualizer.style.transform = `scale(1)`;
-            }
+    const bufferLength = analyser.frequencyBinCount;
+    const dataArray = new Uint8Array(bufferLength);
+    analyser.getByteFrequencyData(dataArray);
 
-            if (percentage > 80) statusText.innerText = "Hold it there!";
-            else if (percentage > 40) statusText.innerText = "Harder!";
-            else statusText.innerText = "Blow on the screen...";
+    /* -------------------------
+       1. UI VISUALIZATION LOGIC
+       (Uses low-frequency average)
+    ------------------------- */
 
-            const THRESHOLD = 65;
-            if (lowFreqAverage > THRESHOLD) { blowFrames++; } else { blowFrames = 0; }
-            if (blowFrames > 60) { blowOutCandles(); }
-            requestAnimationFrame(detectBlow);
-        }
+    let lowSum = 0;
+    const lowCount = 20;
+    for (let i = 0; i < lowCount; i++) {
+        lowSum += dataArray[i] * 1.2;
+    }
+    const lowAvg = lowSum / lowCount;
+
+    let percentage = Math.min((lowAvg / 100) * 100, 100);
+    blowingStrengthBar.style.width = `${percentage}%`;
+
+    if (percentage > 5) {
+        micVisualizer.classList.add("active");
+        micVisualizer.style.transform = `scale(${1 + percentage / 100})`;
+    } else {
+        micVisualizer.classList.remove("active");
+        micVisualizer.style.transform = "scale(1)";
+    }
+
+    if (percentage > 80) statusText.innerText = "Hold it there!";
+    else if (percentage > 40) statusText.innerText = "Harder!";
+    else statusText.innerText = "Blow on the screen...";
+
+
+    /* -------------------------
+       2. REAL BLOW DETECTION ALGORITHM (Speech-proof)
+       (High freq − Low freq)
+    ------------------------- */
+
+    // Low frequencies (speech)
+    let low = 0;
+    for (let i = 0; i < 40; i++) low += dataArray[i];
+    low /= 40;
+
+    // High frequencies (airflow hiss)
+    let high = 0;
+    for (let i = 80; i < 200; i++) high += dataArray[i];
+    high /= 120;
+
+    // Detect airflow noise (blowing)
+    const noiseIndex = high - low;
+
+    // Thresholds for blowing
+    const blowThreshold = 25;       // airflow detection sensitivity
+    const framesNeeded = 30;        // duration needed (0.5 sec)
+
+    if (noiseIndex > blowThreshold) {
+        blowFrames++;
+    } else {
+        blowFrames = 0;
+    }
+
+    if (blowFrames > framesNeeded) {
+        blowOutCandles();
+        return;
+    }
+
+    requestAnimationFrame(detectBlow);
+}
 
         function blowOutCandles() {
             if (candlesExtinguished) return;
