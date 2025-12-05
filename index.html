@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,77 +19,363 @@
         }
 
         /* --- CAKE STYLES --- */
-        .cake-wrapper { transform: scale(1); margin-bottom: 20px; }
-        .cake-container { position: relative; width: 300px; height: 300px; margin: 0 auto; }
-        .cake-base { position: absolute; bottom: 0; left: 50%; transform: translateX(-50%); width: 250px; height: 100px; background: #5D4037; border-radius: 20px 20px 10px 10px; box-shadow: inset -10px -5px 0 rgba(0,0,0,0.3); z-index: 1; }
-        .cake-layer-top { position: absolute; bottom: 100px; left: 50%; transform: translateX(-50%); width: 200px; height: 80px; background: #8D6E63; border-radius: 20px 20px 0 0; box-shadow: inset -10px -5px 0 rgba(0,0,0,0.3); z-index: 2; }
-        .icing { position: absolute; top: -15px; left: -5px; right: -5px; height: 30px; background: #E0F2F1; border-radius: 20px; z-index: 3; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
-        .drip { position: absolute; top: 10px; width: 15px; height: 30px; background: #E0F2F1; border-radius: 0 0 10px 10px; z-index: 3; }
-        .drip:nth-child(1) { left: 20px; height: 40px; }
-        .drip:nth-child(2) { left: 50px; height: 25px; }
-        .drip:nth-child(3) { left: 90px; height: 35px; }
-        .drip:nth-child(4) { left: 130px; height: 20px; }
-        .drip:nth-child(5) { left: 170px; height: 30px; }
-        .candles-container { position: absolute; bottom: 180px; left: 50%; transform: translateX(-50%); width: 180px; height: 60px; display: flex; justify-content: space-around; align-items: flex-end; z-index: 4; }
-        .candle { width: 16px; height: 60px; background: repeating-linear-gradient(45deg, #60A5FA, #60A5FA 5px, #3B82F6 5px, #3B82F6 10px); border-radius: 4px; position: relative; cursor: pointer; }
-        .flame { position: absolute; top: -25px; left: 50%; transform: translateX(-50%); width: 14px; height: 24px; background: radial-gradient(ellipse at bottom, #fbbf24 0%, #ef4444 100%); border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%; box-shadow: 0 0 10px #fbbf24, 0 0 20px #ef4444; animation: flicker 1s infinite alternate; transform-origin: center bottom; transition: opacity 0.3s ease; }
-        .flame.out { opacity: 0; animation: none; }
-        .smoke { position: absolute; top: -30px; left: 50%; transform: translateX(-50%); width: 10px; height: 30px; background: transparent; opacity: 0; }
-        .smoke.active { animation: smoke-rise 2s forwards; }
-        @keyframes flicker { 0% { transform: translateX(-50%) scale(1); } 100% { transform: translateX(-50%) scale(1); } }
-        @keyframes smoke-rise { 0% { opacity: 0.6; background: #94a3b8; transform: translateX(-50%) translateY(0) scale(1); border-radius: 50%; } 100% { opacity: 0; background: #94a3b8; transform: translateX(-50%) translateY(-50px) scale(3); border-radius: 50%; } }
+        .cake-wrapper {
+            transform: scale(1);
+            margin-bottom: 20px;
+        }
+
+        .cake-container {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            margin: 0 auto;
+        }
+
+        .cake-base {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 250px;
+            height: 100px;
+            background: #5D4037;
+            border-radius: 20px 20px 10px 10px;
+            box-shadow: inset -10px -5px 0 rgba(0, 0, 0, 0.3);
+            z-index: 1;
+        }
+
+        .cake-layer-top {
+            position: absolute;
+            bottom: 100px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 200px;
+            height: 80px;
+            background: #8D6E63;
+            border-radius: 20px 20px 0 0;
+            box-shadow: inset -10px -5px 0 rgba(0, 0, 0, 0.3);
+            z-index: 2;
+        }
+
+        .icing {
+            position: absolute;
+            top: -15px;
+            left: -5px;
+            right: -5px;
+            height: 30px;
+            background: #E0F2F1;
+            border-radius: 20px;
+            z-index: 3;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .drip {
+            position: absolute;
+            top: 10px;
+            width: 15px;
+            height: 30px;
+            background: #E0F2F1;
+            border-radius: 0 0 10px 10px;
+            z-index: 3;
+        }
+
+        .drip:nth-child(1) {
+            left: 20px;
+            height: 40px;
+        }
+
+        .drip:nth-child(2) {
+            left: 50px;
+            height: 25px;
+        }
+
+        .drip:nth-child(3) {
+            left: 90px;
+            height: 35px;
+        }
+
+        .drip:nth-child(4) {
+            left: 130px;
+            height: 20px;
+        }
+
+        .drip:nth-child(5) {
+            left: 170px;
+            height: 30px;
+        }
+
+        .candles-container {
+            position: absolute;
+            bottom: 180px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 180px;
+            height: 60px;
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-end;
+            z-index: 4;
+        }
+
+        .candle {
+            width: 16px;
+            height: 60px;
+            background: repeating-linear-gradient(45deg, #60A5FA, #60A5FA 5px, #3B82F6 5px, #3B82F6 10px);
+            border-radius: 4px;
+            position: relative;
+            cursor: pointer;
+        }
+
+        .flame {
+            position: absolute;
+            top: -25px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 14px;
+            height: 24px;
+            background: radial-gradient(ellipse at bottom, #fbbf24 0%, #ef4444 100%);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            box-shadow: 0 0 10px #fbbf24, 0 0 20px #ef4444;
+            animation: flicker 1s infinite alternate;
+            transform-origin: center bottom;
+            transition: opacity 0.3s ease;
+        }
+
+        .flame.out {
+            opacity: 0;
+            animation: none;
+        }
+
+        .smoke {
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 10px;
+            height: 30px;
+            background: transparent;
+            opacity: 0;
+        }
+
+        .smoke.active {
+            animation: smoke-rise 2s forwards;
+        }
+
+        @keyframes flicker {
+            0% {
+                transform: translateX(-50%) scale(1);
+            }
+
+            100% {
+                transform: translateX(-50%) scale(1);
+            }
+        }
+
+        @keyframes smoke-rise {
+            0% {
+                opacity: 0.6;
+                background: #94a3b8;
+                transform: translateX(-50%) translateY(0) scale(1);
+                border-radius: 50%;
+            }
+
+            100% {
+                opacity: 0;
+                background: #94a3b8;
+                transform: translateX(-50%) translateY(-50px) scale(3);
+                border-radius: 50%;
+            }
+        }
 
         /* --- UI & MINI CAKE --- */
-        .text-gradient { background: linear-gradient(to right, #38bdf8, #818cf8); -webkit-background-clip: text; background-clip: text; color: transparent; }
-        .glass-card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.1); box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5); }
-        .btn-primary { background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%); transition: all 0.3s ease; box-shadow: 0 0 15px rgba(14, 165, 233, 0.3); }
-        .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 0 25px rgba(99, 102, 241, 0.5); }
-        .mic-sensor { width: 50px; height: 50px; border-radius: 50%; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); display: flex; align-items: center; justify-content: center; margin: 0 auto; }
-        .mic-sensor.active { border-color: #38bdf8; box-shadow: 0 0 15px rgba(56, 189, 248, 0.3); }
-        .mic-sensor.active svg { color: #38bdf8; }
-        .hidden { display: none !important; opacity: 0; }
-        .fade-in { animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        
+        .text-gradient {
+            background: linear-gradient(to right, #38bdf8, #818cf8);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .glass-card {
+            background: rgba(30, 41, 59, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.5);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #0ea5e9 0%, #6366f1 100%);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 15px rgba(14, 165, 233, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(99, 102, 241, 0.5);
+        }
+
+        .mic-sensor {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto;
+        }
+
+        .mic-sensor.active {
+            border-color: #38bdf8;
+            box-shadow: 0 0 15px rgba(56, 189, 248, 0.3);
+        }
+
+        .mic-sensor.active svg {
+            color: #38bdf8;
+        }
+
+        .hidden {
+            display: none !important;
+            opacity: 0;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         /* Timeline Styles */
-        .timeline-dot { width: 16px; height: 16px; background: #0ea5e9; border: 3px solid #0f172a; border-radius: 50%; position: absolute; left: -10px; top: 4px; box-shadow: 0 0 10px #0ea5e9; }
-        .timeline-content { border-left: 2px solid #334155; padding-left: 24px; padding-bottom: 32px; position: relative; }
-        .timeline-content:last-child { border-left: 2px solid transparent; }
-        
-        .mini-cake-container { width: 80px; height: 120px; display: flex; justify-content: center; align-items: center; }
-        .mini-cake { width: 60px; height: 40px; background: #8D6E63; border-radius: 10px 10px 5px 5px; position: relative; box-shadow: 0 0 10px rgba(141,110,99,0.5); }
-        .mini-icing { position: absolute; top: -10px; width: 70px; height: 20px; background: #E0F2F1; border-radius: 12px; left: 50%; transform: translateX(-50%); }
-        .mini-candle { position: absolute; top: -35px; left: 50%; transform: translateX(-50%); width: 8px; height: 25px; background: #60A5FA; border-radius: 4px; }
-        .mini-flame { position: absolute; top: -50px; left: 50%; transform: translateX(-50%); width: 12px; height: 18px; background: radial-gradient(circle at 50% 70%, #fbbf24 0%, #ef4444 75%); border-radius: 50%; animation: miniFlame 1s infinite alternate; }
-        @keyframes miniFlame { 0% { transform: translateX(-50%) scale(1); } 100% { transform: translateX(-50%) scale(0.9); } }
+        .timeline-dot {
+            width: 16px;
+            height: 16px;
+            background: #0ea5e9;
+            border: 3px solid #0f172a;
+            border-radius: 50%;
+            position: absolute;
+            left: -10px;
+            top: 4px;
+            box-shadow: 0 0 10px #0ea5e9;
+        }
+
+        .timeline-content {
+            border-left: 2px solid #334155;
+            padding-left: 24px;
+            padding-bottom: 32px;
+            position: relative;
+        }
+
+        .timeline-content:last-child {
+            border-left: 2px solid transparent;
+        }
+
+        .mini-cake-container {
+            width: 80px;
+            height: 120px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .mini-cake {
+            width: 60px;
+            height: 40px;
+            background: #8D6E63;
+            border-radius: 10px 10px 5px 5px;
+            position: relative;
+            box-shadow: 0 0 10px rgba(141, 110, 99, 0.5);
+        }
+
+        .mini-icing {
+            position: absolute;
+            top: -10px;
+            width: 70px;
+            height: 20px;
+            background: #E0F2F1;
+            border-radius: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .mini-candle {
+            position: absolute;
+            top: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 8px;
+            height: 25px;
+            background: #60A5FA;
+            border-radius: 4px;
+        }
+
+        .mini-flame {
+            position: absolute;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 12px;
+            height: 18px;
+            background: radial-gradient(circle at 50% 70%, #fbbf24 0%, #ef4444 75%);
+            border-radius: 50%;
+            animation: miniFlame 1s infinite alternate;
+        }
+
+        @keyframes miniFlame {
+            0% {
+                transform: translateX(-50%) scale(1);
+            }
+
+            100% {
+                transform: translateX(-50%) scale(0.9);
+            }
+        }
     </style>
 </head>
+
 <body class="flex flex-col items-center justify-center selection:bg-cyan-500 selection:text-white min-h-screen py-10">
 
     <canvas id="confetti" class="fixed top-0 left-0 w-full h-full pointer-events-none z-50"></canvas>
 
     <div class="relative z-10 w-full max-w-4xl px-4 text-center flex flex-col items-center">
-        
+
         <h1 class="font-black text-5xl md:text-7xl mb-2 text-gradient tracking-tight uppercase drop-shadow-lg">
             Happy Birthday<br>Rudra!!
         </h1>
-        
+
         <div id="start-screen" class="glass-card rounded-2xl p-8 mt-8 max-w-md mx-auto w-full">
             <div class="mb-8">
-        
-                <img src="./rudraPhoto.jpeg" 
-                     alt="Photo of Rudra" 
-                     class="w-full h-96 rounded-xl object-cover border-4 border-cyan-400 shadow-xl mb-4"
-                >
+
+                <img src="./rudraPhoto.jpeg" alt="Photo of Rudra"
+                    class="w-full h-96 rounded-xl object-cover border-4 border-cyan-400 shadow-xl mb-4">
             </div>
-            <button id="start-btn" class="btn-primary text-white font-bold text-lg px-8 py-4 rounded-xl w-full tracking-wide uppercase">Start the Party</button>
+            <button id="start-btn"
+                class="btn-primary text-white font-bold text-lg px-8 py-4 rounded-xl w-full tracking-wide uppercase">Start
+                the Party</button>
         </div>
 
         <div id="party-scene" class="hidden mt-4 flex flex-col items-center w-full">
             <div class="cake-wrapper">
                 <div class="cake-container">
                     <div class="candles-container" id="candles"></div>
-                    <div class="cake-layer-top"><div class="icing"></div><div class="drip"></div><div class="drip"></div><div class="drip"></div><div class="drip"></div><div class="drip"></div></div>
+                    <div class="cake-layer-top">
+                        <div class="icing"></div>
+                        <div class="drip"></div>
+                        <div class="drip"></div>
+                        <div class="drip"></div>
+                        <div class="drip"></div>
+                        <div class="drip"></div>
+                    </div>
                     <div class="cake-base"></div>
                 </div>
             </div>
@@ -96,41 +383,59 @@
             <div id="interaction-area" class="fade-in w-full mt-2">
                 <div class="flex flex-col items-center gap-2">
                     <div class="mic-sensor transition-all duration-100" id="mic-visualizer">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-400" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 0 116 0v6a3 3 0 01-3 3z" /></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-slate-400" fill="none"
+                            viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M19 11a7 7 0 01-7 7m0 0a7 7 0 01-7-7m7 7v4m0 0H8m4 0h4m-4-8a3 3 0 01-3-3V5a3 0 116 0v6a3 3 0 01-3 3z" />
+                        </svg>
                     </div>
-                    <p id="status-text" class="text-slate-500 font-mono text-xs uppercase tracking-widest">Blow on the screen...</p>
-                    <div id="blowing-strength-container" class="w-48 h-2 bg-slate-700 rounded-full mt-2 overflow-hidden">
-                        <div id="blowing-strength-bar" class="h-full bg-gradient-to-r from-cyan-400 to-indigo-500 transition-all duration-75 ease-out" style="width: 0%;"></div>
+                    <p id="status-text" class="text-slate-500 font-mono text-xs uppercase tracking-widest">Blow on the
+                        screen...</p>
+                    <div id="blowing-strength-container"
+                        class="w-48 h-2 bg-slate-700 rounded-full mt-2 overflow-hidden">
+                        <div id="blowing-strength-bar"
+                            class="h-full bg-gradient-to-r from-cyan-400 to-indigo-500 transition-all duration-75 ease-out"
+                            style="width: 0%;"></div>
                     </div>
                 </div>
             </div>
 
-            <div id="wish-message" class="hidden mt-8 glass-card p-8 rounded-xl border-cyan-500/30 w-full max-w-3xl text-left relative overflow-hidden transform transition-all duration-700">
+            <div id="wish-message"
+                class="hidden mt-8 glass-card p-8 rounded-xl border-cyan-500/30 w-full max-w-3xl text-left relative overflow-hidden transform transition-all duration-700">
                 <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-cyan-500 to-indigo-500"></div>
-                
+
                 <div class="flex justify-between items-start mb-6">
                     <h3 class="text-3xl font-black text-white tracking-tight">Happy Birthday Rudra!!</h3>
                     <span class="text-4xl">🎂</span>
                 </div>
-                
+
                 <div class="prose prose-invert prose-lg max-w-none text-slate-300 leading-relaxed mb-10">
-                    <p>Happy Birthday Bhaisaab!! Today is your special day. Many years ago, somewhere in Moradabad, a child was born on this day that brought light and happiness to his house. His family named him "Rudra Narayan Kaushik" (Kaafi weight wala naam in a good way)</p>
-                    <p>I hope you enjoy your special day well today. We first met each other on 21 July 2025. I still remember how awkwardly we asked for each other's phone number. I don't even know how we grew close in hostel. There were a lot of times when we had differences or misunderstandings but we somehow cleared them out, which is why I was able to send this website to you.</p>
-                    <p>I would have celebrated your birthday with you but you live hundreds of kilometers away from me. Still, it shouldn't stop me from wishing you a happy birthday. God bless our mastikhor laddu Rudra with good health and wealth.</p>
+                    <p>Happy Birthday Bhaisaab!! Today is your special day. Many years ago, somewhere in Moradabad, a
+                        child was born on this day that brought light and happiness to his house. His family named him
+                        "Rudra Narayan Kaushik" (Kaafi weight wala naam in a good way)</p>
+                    <p>I hope you enjoy your special day well today. We first met each other on 21 July 2025. I still
+                        remember how awkwardly we asked for each other's phone number. I don't even know how we grew
+                        close in hostel. There were a lot of times when we had differences or misunderstandings but we
+                        somehow cleared them out, which is why I was able to send this website to you.</p>
+                    <p>I would have celebrated your birthday with you but you live hundreds of kilometers away from me.
+                        Still, it shouldn't stop me from wishing you a happy birthday. God bless our mastikhor laddu
+                        Rudra with good health and wealth.</p>
                 </div>
 
                 <div class="border-t border-slate-700/50 pt-8 mb-8">
                     <h4 class="text-xl font-bold text-white mb-6 flex items-center">
                         <span class="mr-2"></span> Our Journey
                     </h4>
-                    
+
                     <div class="ml-2">
                         <div class="timeline-content">
                             <div class="timeline-dot"></div>
                             <div class="text-cyan-400 font-bold text-sm tracking-wider mb-1">21 JULY 2025</div>
                             <h5 class="text-white font-bold text-lg">Our First Meeting</h5>
                             <p class="text-slate-400 text-sm mt-1">
-                                The day we first met as strangers. Thoda bhot awkward bhi tha woh din because I don't open up very fast with new people. On this day I was too busy thinking about older friendships
+                                The day we first met as strangers. Thoda bhot awkward bhi tha woh din because I don't
+                                open up very fast with new people. On this day I was too busy thinking about older
+                                friendships
                             </p>
                         </div>
 
@@ -139,7 +444,12 @@
                             <div class="text-cyan-400 font-bold text-sm tracking-wider mb-1">HOSTEL DAYS</div>
                             <h5 class="text-white font-bold text-lg">Starting of bhaichara</h5>
                             <p class="text-slate-400 text-sm mt-1">
-                                We were planning to start learning C together from youtube, "mess ka khana acha nhi lga" and thoda bhot opening up about our personal lives. We both only had each other in hostel and Vraj but mostly hum dono hi because we didn't force each other into anything uncomfortable like others did. I started recognising ki u were more thoughtful and deep than u let on when u started setting mess seats for me. We also shared about our issues and life before university when we both were alone on a random night
+                                We were planning to start learning C together from youtube, "mess ka khana acha nhi lga"
+                                and thoda bhot opening up about our personal lives. We both only had each other in
+                                hostel and Vraj but mostly hum dono hi because we didn't force each other into anything
+                                uncomfortable like others did. I started recognising ki u were more thoughtful and deep
+                                than u let on when u started setting mess seats for me. We also shared about our issues
+                                and life before university when we both were alone on a random night
                             </p>
                         </div>
 
@@ -148,7 +458,8 @@
                             <div class="text-cyan-400 font-bold text-sm tracking-wider mb-1">11 AUGUST</div>
                             <h5 class="text-white font-bold text-lg">Mera birthday surprise</h5>
                             <p class="text-slate-400 text-sm mt-1">
-                                Mereko tune aur Deb ne birthday surprise cake diya tha at 12 am. It was the first time koi dost personally cake diya ho woh bhi at 12 am. Mereko yeh cheez humesha yaad rahegi
+                                Mereko tune aur Deb ne birthday surprise cake diya tha at 12 am. It was the first time
+                                koi dost personally cake diya ho woh bhi at 12 am. Mereko yeh cheez humesha yaad rahegi
                             </p>
                         </div>
 
@@ -157,7 +468,8 @@
                             <div class="text-cyan-400 font-bold text-sm tracking-wider mb-1">19 SEPTEMBER</div>
                             <h5 class="text-white font-bold text-lg">Buri Halat Shuru</h5>
                             <p class="text-slate-400 text-sm mt-1">
-                                Iss din tera PG jana was confirmed. I remember I woke up from an evening nap jab u were talking to uncle about shifting to pg and tera jab classmate aya tha to drop to our room
+                                Iss din tera PG jana was confirmed. I remember I woke up from an evening nap jab u were
+                                talking to uncle about shifting to pg and tera jab classmate aya tha to drop to our room
                             </p>
                         </div>
 
@@ -166,7 +478,9 @@
                             <div class="text-cyan-400 font-bold text-sm tracking-wider mb-1">21-22 SEPTEMBER</div>
                             <h5 class="text-white font-bold text-lg">Late Night Talks</h5>
                             <p class="text-slate-400 text-sm mt-1">
-                                21 ki raat ko when you fell asleep after my 1.5 hour head massage and 22 ki subah uncle aye the and teri reports krwayi thi. Uss din I brought uncle's bag to him because mereko lga tu thaka hoga after spending hours outside while being ill
+                                21 ki raat ko when you fell asleep after my 1.5 hour head massage and 22 ki subah uncle
+                                aye the and teri reports krwayi thi. Uss din I brought uncle's bag to him because mereko
+                                lga tu thaka hoga after spending hours outside while being ill
                             </p>
                         </div>
 
@@ -175,7 +489,12 @@
                             <div class="text-cyan-400 font-bold text-sm tracking-wider mb-1">2-3 OCTOBER</div>
                             <h5 class="text-white font-bold text-lg">PG Shift Hogya</h5>
                             <p class="text-slate-400 text-sm mt-1">
-                                2 ki raat ko we slept on the same bed for the first and last time. Honestly speaking, sleeping while hugging each other is something I never forget even today. 3 ko tu PG shift hogya tha and mera mood kaafi off rehna shuru hogya tha because hostel me mereko koi purpose nhi mil rha tha. Eating, roaming ya talking to each other gave me a purpose. I even skipped an important uni skit on that day. I thought I was betraying u and myself if I didnt mourn the end of our roomie dynamics for even one day
+                                2 ki raat ko we slept on the same bed for the first and last time. Honestly speaking,
+                                sleeping while hugging each other is something I never forget even today. 3 ko tu PG
+                                shift hogya tha and mera mood kaafi off rehna shuru hogya tha because hostel me mereko
+                                koi purpose nhi mil rha tha. Eating, roaming ya talking to each other gave me a purpose.
+                                I even skipped an important uni skit on that day. I thought I was betraying u and myself
+                                if I didnt mourn the end of our roomie dynamics for even one day
                             </p>
                         </div>
 
@@ -184,16 +503,27 @@
                             <div class="text-cyan-400 font-bold text-sm tracking-wider mb-1">11 OCTOBER</div>
                             <h5 class="text-white font-bold text-lg">Reconciliation</h5>
                             <p class="text-slate-400 text-sm mt-1">
-                                Iss raat ko I called u after gathering courage because I thought u had changed after shifting to PG and no longer wanted to be in touch with me. Still, after calling u I understood what hardships u were going through. Afterwards I felt I needed to be more supportive than before to uplift ur mood
+                                Iss raat ko I called u after gathering courage because I thought u had changed after
+                                shifting to PG and no longer wanted to be in touch with me. Still, after calling u I
+                                understood what hardships u were going through. Afterwards I felt I needed to be more
+                                supportive than before to uplift ur mood
                             </p>
                         </div>
 
                         <div class="timeline-content">
                             <div class="timeline-dot"></div>
-                            <div class="text-cyan-400 font-bold text-sm tracking-wider mb-1">17 OCTOBER - 10 NOVEMBER</div>
+                            <div class="text-cyan-400 font-bold text-sm tracking-wider mb-1">17 OCTOBER - 10 NOVEMBER
+                            </div>
                             <h5 class="text-white font-bold text-lg">You went home</h5>
                             <p class="text-slate-400 text-sm mt-1">
-                                U went home on 17 October and fir health issues thode zyada hogye which I wont talk about. Bhot dar ka mahol tha because har time jab message ata tha tera ki tabiyat aur kharab ho rhi h utna mera dil baithana shuru hogya tha. I called uncle on 25 October because mereko sach me yehi dar tha ki u were going to actually die and by any means necessary ek aur doctor ko consult karo. The only way I could support u was through my long messages that I hope helped u and ur willpower. Fir u finally started recovering and we met in FR on 10 November and talked about everything that had happened in our lives
+                                U went home on 17 October and fir health issues thode zyada hogye which I wont talk
+                                about. Bhot dar ka mahol tha because har time jab message ata tha tera ki tabiyat aur
+                                kharab ho rhi h utna mera dil baithana shuru hogya tha. I called uncle on 25 October
+                                because mereko sach me yehi dar tha ki u were going to actually die and by any means
+                                necessary ek aur doctor ko consult karo. The only way I could support u was through my
+                                long messages that I hope helped u and ur willpower. Fir u finally started recovering
+                                and we met in FR on 10 November and talked about everything that had happened in our
+                                lives
                             </p>
                         </div>
 
@@ -202,7 +532,9 @@
                             <div class="text-cyan-400 font-bold text-sm tracking-wider mb-1">21 NOVEMBER</div>
                             <h5 class="text-white font-bold text-lg">You came back</h5>
                             <p class="text-slate-400 text-sm mt-1">
-                                You came back to hostel for a few hours and then we all talked like our original room dynamics like nothing like u shifting to PG ever happened. After we were done talking, I accompanied u to the university gate like everytime I do
+                                You came back to hostel for a few hours and then we all talked like our original room
+                                dynamics like nothing like u shifting to PG ever happened. After we were done talking, I
+                                accompanied u to the university gate like everytime I do
                             </p>
                         </div>
 
@@ -211,7 +543,8 @@
                             <div class="text-cyan-400 font-bold text-sm tracking-wider mb-1">29-30 NOVEMBER</div>
                             <h5 class="text-white font-bold text-lg">C lectures</h5>
                             <p class="text-slate-400 text-sm mt-1">
-                                I was the teacher and u were the student. I tried teaching C to u and brought chocolates for us both on these days
+                                I was the teacher and u were the student. I tried teaching C to u and brought chocolates
+                                for us both on these days
                             </p>
                         </div>
 
@@ -220,7 +553,9 @@
                             <div class="text-cyan-400 font-bold text-sm tracking-wider mb-1">4 DECEMBER</div>
                             <h5 class="text-white font-bold text-lg">Another meetup at FR</h5>
                             <p class="text-slate-400 text-sm mt-1">
-                                  We ordered some food to eat and talked about regular stuff and our PG plan. Maine ek photo bhi li teri and tujhe itna insist krne ke baad bhi veg wrap nhi khaya tune to save my money
+                                We ordered some food to eat and talked about regular stuff and our PG plan. Maine ek
+                                photo bhi li teri and tujhe itna insist krne ke baad bhi veg wrap nhi khaya tune to save
+                                my money
                             </p>
                         </div>
 
@@ -229,7 +564,12 @@
                             <div class="text-cyan-400 font-bold text-sm tracking-wider mb-1">TODAY</div>
                             <h5 class="text-white font-bold text-lg">Distance doesnt matter</h5>
                             <p class="text-slate-400 text-sm mt-1">
-                                Today we are celebrating ur birthday. Happy Birthday Bhai!! You deserve all the happiness, wealth and health after all you have been through. I am so glad ki you made it out alive and are finally back on track. Words cannot express how much I value you after you revived my trust in close male friends and ki do ladke can absolutely be like brothers and stand for each other in good and bad times. God bless you and Love you bhai ❤️🫂
+                                Today we are celebrating ur birthday. Happy Birthday Bhai!! You deserve all the
+                                happiness, wealth and health after all you have been through. I am so glad ki you made
+                                it out alive and are finally back on track. Words cannot express how much I value you
+                                after you revived my trust in close male friends and ki do ladke can absolutely be like
+                                brothers and stand for each other in good and bad times. God bless you and Love you bhai
+                                ❤️🫂
                             </p>
                         </div>
 
@@ -237,7 +577,8 @@
                     </div>
                 </div>
                 <div class="mt-6 pt-6 border-t border-slate-700/50">
-                    <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Best wishes and love from your bhai</p>
+                    <p class="text-xs text-slate-500 uppercase tracking-widest mb-1">Best wishes and love from your bhai
+                    </p>
                     <p class="font-bold text-cyan-400 text-lg">Vishavjeet Singh</p>
                 </div>
             </div>
@@ -255,7 +596,7 @@
         const micVisualizer = document.getElementById('mic-visualizer');
         const interactionArea = document.getElementById('interaction-area');
         const blowingStrengthBar = document.getElementById('blowing-strength-bar');
-        
+
         let audioContext;
         let analyser;
         let microphone;
@@ -263,6 +604,7 @@
         let candlesExtinguished = false;
         const candleCount = 5;
         let blowFrames = 0;
+        let confettiActive = true;
 
         function createCandles() {
             for (let i = 0; i < candleCount; i++) {
@@ -291,7 +633,7 @@
                 analyser = audioContext.createAnalyser();
                 microphone = audioContext.createMediaStreamSource(stream);
                 microphone.connect(analyser);
-                analyser.fftSize = 512; 
+                analyser.fftSize = 512;
                 isListening = true;
                 detectBlow();
             } catch (err) {
@@ -311,27 +653,29 @@
             analyser.getByteFrequencyData(dataArray);
             let sum = 0;
             const lowFreqCount = 20;
-            for (let i = 0; i < lowFreqCount; i++) { sum += dataArray[i]; }
+            for (let i = 0; i < lowFreqCount; i++) {
+                sum += dataArray[i] * 1.2;  // slight boost, not heavy boost
+            }
             let lowFreqAverage = sum / lowFreqCount;
-            let percentage = Math.min((lowFreqAverage / 100) * 100, 100); 
+            let percentage = Math.min((lowFreqAverage / 100) * 100, 100);
             blowingStrengthBar.style.width = `${percentage}%`;
 
             if (percentage > 5) {
-                 micVisualizer.classList.add('active');
-                 let scale = 1 + (percentage / 100);
-                 micVisualizer.style.transform = `scale(${scale})`;
+                micVisualizer.classList.add('active');
+                let scale = 1 + (percentage / 100);
+                micVisualizer.style.transform = `scale(${scale})`;
             } else {
-                 micVisualizer.classList.remove('active');
-                 micVisualizer.style.transform = `scale(1)`;
+                micVisualizer.classList.remove('active');
+                micVisualizer.style.transform = `scale(1)`;
             }
 
             if (percentage > 80) statusText.innerText = "Hold it there!";
             else if (percentage > 40) statusText.innerText = "Harder!";
             else statusText.innerText = "Blow on the screen...";
 
-            const THRESHOLD = 40; 
+            const THRESHOLD = 65;
             if (lowFreqAverage > THRESHOLD) { blowFrames++; } else { blowFrames = 0; }
-            if (blowFrames > 10) { blowOutCandles(); }
+            if (blowFrames > 18) { blowOutCandles(); }
             requestAnimationFrame(detectBlow);
         }
 
@@ -363,8 +707,16 @@
         resizeCanvas();
         let confettiParticles = [];
         function startConfetti() {
-            for (let i = 0; i < 120; i++) { confettiParticles.push(new Particle()); }
+            confettiActive = true;
+            for (let i = 0; i < 120; i++) {
+                confettiParticles.push(new Particle());
+            }
             animateConfetti();
+
+            // Stop confetti after 5 seconds
+            setTimeout(() => {
+                confettiActive = false;
+            }, 5000);
         }
         class Particle {
             constructor() {
@@ -373,7 +725,7 @@
                 this.size = Math.random() * 8 + 4;
                 this.speedY = Math.random() * 5 + 3;
                 this.speedX = Math.random() * 4 - 2;
-                const colors = ['#0ea5e9', '#6366f1', '#e2e8f0', '#fbbf24', '#22d3ee']; 
+                const colors = ['#0ea5e9', '#6366f1', '#e2e8f0', '#fbbf24', '#22d3ee'];
                 this.color = colors[Math.floor(Math.random() * colors.length)];
                 this.rotation = Math.random() * 360;
                 this.rotationSpeed = Math.random() * 10 - 5;
@@ -382,7 +734,16 @@
                 this.y += this.speedY;
                 this.x += this.speedX;
                 this.rotation += this.rotationSpeed;
-                if (this.y > canvas.height) { this.y = -20; this.x = Math.random() * canvas.width; }
+                if (this.y > canvas.height) {
+                    if (confettiActive) {
+                        // During first 5 sec → respawn from top
+                        this.y = -20;
+                        this.x = Math.random() * canvas.width;
+                    } else {
+                        // After 5 sec → freeze below screen so animation can end
+                        this.y = canvas.height + 50;
+                    }
+                }
             }
             draw() {
                 ctx.save(); ctx.translate(this.x, this.y); ctx.rotate((this.rotation * Math.PI) / 180);
@@ -391,9 +752,21 @@
         }
         function animateConfetti() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            confettiParticles.forEach(p => { p.update(); p.draw(); });
+
+            confettiParticles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+
+            // STOP the animation after all confetti reach bottom
+            if (!confettiActive && confettiParticles.every(p => p.y > canvas.height)) {
+                return; // stop animation loop
+            }
+
             requestAnimationFrame(animateConfetti);
         }
+
     </script>
 </body>
+
 </html>
